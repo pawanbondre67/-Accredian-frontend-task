@@ -75,7 +75,7 @@ const ButtonAppBar: React.FC = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleLogout}>Referrals</MenuItem>
+                <MenuItem >Referrals</MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
