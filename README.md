@@ -5,32 +5,30 @@
 The **Refer & Earn** project is a full-stack web application that allows users to refer a course to others and earn rewards. The application consists of a **React.js (Vite)** frontend, an **Express.js** backend, and **MySQL** as the database, managed with **Prisma ORM**. Users can sign up, log in, and refer courses via a form. Upon successful referral submission, an email notification is sent using **EmailJS**.
 
 ---
-
 ## 🚀 Features
 
+### 🌐 Frontend (React.js + Vite + MUI)
 
-### 🛠 Backend (Node.js + Express.js + Prisma + MySQL)
-
-- REST API endpoints to handle:
-  - **User Authentication** (Signup/Login)
-  - **Referral Form Submission**
-  - **Database storage with Prisma ORM**
-  - **Error handling & validation**
-- **Email notifications** via EmailJS upon successful referral
-
----
+- **Responsive UI** with Material-UI components
+- **Refer & Earn Landing Page** with:
+  - Hero section
+  - "Refer Now" button to open a modal
+  - Referral form with validation
+- **Authentication** (Signup & Login pages with validation)
+- **State management** using React Context API
+  
+--- 
 
 ## 📂 Tech Stack
 
-### Backend:
+### Frontend:
 
-- **Node.js + Express.js**
-- **Prisma ORM** (for MySQL database connectivity)
-- **Nodemon** (for live server reloading)
-
-### Database:
-
-- **MySQL** (structured data storage)
+- **React.js (Vite)**
+- **Material-UI (MUI)**
+- **Tailwind CSS (for additional styling)**
+- EmailJS (for sending referral emails)
+- **React Router** (for navigation)
+- **React Context API** (for state management)
 
 ---
 
@@ -40,19 +38,17 @@ The **Refer & Earn** project is a full-stack web application that allows users t
 
 Ensure you have the following installed:
 
-- **Node.js (v16+)**
-- **MySQL**
-- **Git**
+- **Vite** (for frontend setup)
 
  ## 2️⃣ Clone the Repository
 
 ```sh
- git clone https://github.com/pawanbondre67/-Accredian-frontend-task.git
- cd -Accredian-frontend-task
+ git clone https://github.com/pawanbondre67/Accredian-backend-task.git
+ cd Accredian-backend-task
 ```
 
 
-### 3️⃣ Backend Setup
+### 3️⃣  Frontend Setup
 
 ```sh
  npm install
@@ -62,28 +58,17 @@ Ensure you have the following installed:
 Create a `.env` file in the  directory and add:
 
 ```env
-DATABASE_URL="mysql://username:password@localhost:3306/databaseName"
-JWT_SECRET="your_jwt_secret"
-PORT=3000
+VITE_BASE_URL="http://localhost:3000/api"
+VITE_SERVICE_ID="service_Id"
+VITE_TEMPLATE_ID="template_Id"
+VITE_USER_ID="userId"
 ```
 
-###Install Prisma
+Run the frontend:
 
 ```sh
-npm install -g prisma
+npm run dev
 ```
-
-Run Prisma Migrations
-```sh
-npx prisma migrate dev --name init
-```
-
-Run the server:
-
-```sh
-npm start
-```
-
 
 ## 📌 API Endpoints
 
