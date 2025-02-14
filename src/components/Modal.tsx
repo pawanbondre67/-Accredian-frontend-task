@@ -67,10 +67,11 @@ export default function ModalForm({
     }
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
-        ? steps.findIndex((step, i) => !(i in completed))
+        ? steps.findIndex((_step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
+
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
