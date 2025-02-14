@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { useAuth } from '../context/AuthContext';
+import Loader from './Loader';
 
 export default function SignUp() {
 
@@ -21,6 +22,7 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const validateInputs = () => {
 
@@ -50,14 +52,20 @@ export default function SignUp() {
 
   async function handleSignup(event: { preventDefault: () => void; }) {
     event.preventDefault();
+
+    setLoading(true);
+
     if (!validateInputs()) {
       return;
     }
+
     try {
         await signUp(email, password);
+        setLoading(false);
     } catch  {
         console.error("Failed to sign up: invalid credentials");
       setError("Failed to sign up: invalid credentials");
+      setLoading(false);
     }
   }
 
@@ -114,7 +122,7 @@ export default function SignUp() {
             fullWidth
             variant="contained"
           >
-            Sign up
+            {loading ? <Loader /> : 'Sign Up'}
           </Button>
           <Typography sx={{ textAlign: 'center' }}>
             Already have an account?{' '}

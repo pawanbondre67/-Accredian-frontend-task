@@ -15,6 +15,7 @@ import Card from '@mui/material/Card';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import Loader from './Loader';
 
 
 export default function SignIn() {
@@ -27,6 +28,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
 
 
@@ -57,13 +59,16 @@ export default function SignIn() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (validateInputs()) {
+      setLoading(true);
       try {
         await signIn(email, password);
+        setLoading(false);
 
       } catch  {
 
         console.error("Failed to sign in: invalid credentials");
         setError("Failed to sign in: invalid credentials");
+        setLoading(false);
       }
     }
   };
@@ -146,7 +151,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
             >
-              Sign in
+               {loading ? <Loader /> : 'Sign in'}
             </Button>
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account?{' '}
