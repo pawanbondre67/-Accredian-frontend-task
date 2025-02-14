@@ -43,8 +43,8 @@ Ensure you have the following installed:
  ## 2️⃣ Clone the Repository
 
 ```sh
- git clone https://github.com/pawanbondre67/Accredian-backend-task.git
- cd Accredian-backend-task
+ git clone https://github.com/pawanbondre67-Accredian-frontend-task.git
+ cd -Accredian-frontend-task
 ```
 
 
