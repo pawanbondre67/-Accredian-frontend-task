@@ -21,7 +21,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
   const [severity, setSeverity] = React.useState<AlertColor>('error');
   const baseUrl = import.meta.env.VITE_BASE_URL;
-  console.log('baseUrl',baseUrl); 
 
  
   useEffect(() => {
@@ -30,6 +29,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setIsAuthenticated(true);
       console.log('Token found, setting isAuthenticated to true');
     } else {
+      signOut();
       console.log('No token found, setting isAuthenticated to false');
     }
   }, []);
@@ -38,11 +38,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       const response = await axios.post(`${baseUrl}/auth/login`, { email, password });
       if (response.data) {
-        console.log('responsedata of login',response.data);
         localStorage.setItem("token", response.data.token);
         setIsAuthenticated(true);
         navigate("/");
-        setMessage("You have been signed in successfully.");
+        setMessage("Signed in successfully.");
         setSeverity('success');
         setSnackbarOpen(true);
       }
@@ -62,11 +61,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       const response = await axios.post(`${baseUrl}/auth/register`, { email, password });
       if (response.data) {
-        console.log('response.data',response.data);
+       
         localStorage.setItem("token", response.data.token);
         setIsAuthenticated(true);
         navigate("/");
-        setMessage("You have been signed up successfully.");
+        setMessage("Signed up successfully.");
         setSeverity('success');
         setSnackbarOpen(true);
       }
@@ -84,8 +83,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     localStorage.removeItem("token");
     setIsAuthenticated(false);
     navigate("/signin");
-    setMessage("You have been signed out.");
+    setMessage("Logged out.");
     setSeverity('success');
+    setSnackbarOpen(true);
   };
 
   const handleCloseSnackbar = (reason?: SnackbarCloseReason) => {
