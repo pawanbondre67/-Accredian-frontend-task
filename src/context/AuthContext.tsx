@@ -29,7 +29,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setIsAuthenticated(true);
       console.log('Token found, setting isAuthenticated to true');
     } else {
-      signOut();
+     setMessage('Sign in To get Started');
+      setSeverity('info');
+      setSnackbarOpen(true);
+      
       console.log('No token found, setting isAuthenticated to false');
     }
   }, []);
